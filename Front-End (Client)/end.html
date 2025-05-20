@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geschafft!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: 'Orbitron', sans-serif;
+      background: url('germany-3723381_1920.jpeg') center/cover no-repeat;
+      color: rgb(255, 0, 0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      background-color: black;
+    }
+
+    .message {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgb(11, 169, 17);
+      max-width: 80%;
+    }
+
+    h1 {
+      font-size: 60px;
+      margin-bottom: 20px;
+      color: #ffffff;
+      text-shadow: 0 0 10px #7c7272, 0 0 30px #716969;
+    }
+
+    p {
+      font-size: 24px;
+      color: white;
+    }
+
+    .restart-button {
+      margin-top: 30px;
+      padding: 15px 40px;
+      font-size: 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #28ca16;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgb(23, 174, 23);
+      transition: background-color 0.3s ease;
+    }
+
+    .restart-button:hover {
+      background-color: #ff0909;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="message">
+    <h1>Geschafft!</h1>
+    <p>Ihr habt das Atomkraftwerk erfolgreich gerettet.</p>
+    <button class="restart-button" onclick="window.location.href='index.html'">Neustart</button>
+  </div>
+
+</body>
+</html>

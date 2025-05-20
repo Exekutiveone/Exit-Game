@@ -1,0 +1,110 @@
+/* Grundreset für alle Elemente */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Vollbild und Schriftart */
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+/* Login-Seite mit dunklem Hintergrundbild */
+.login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('dein-bild.jpg') center/cover no-repeat;
+}
+
+/* Overlay für Blur-Effekt */
+.overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(3px);
+}
+
+/* Login-Box */
+.login-box {
+  background: rgba(30, 30, 30, 0.95);
+  padding: 1rem;
+  border-radius: 10px;
+  width: 240px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #333;
+}
+
+/* Beschreibung */
+.login-box h1.description {
+  font-size: 1.2rem;
+  margin-bottom: 0.5em;
+  color: #f0f0f0;
+}
+
+/* Eingabefelder */
+.login-box input {
+  width: 200px;
+  height: 40px;
+  font-size: 1rem;
+  padding: 0 10px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+/* Login-Button */
+.login-box button {
+  width: 200px;
+  height: 40px;
+  font-size: 1rem;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  background-color: #1976D2;
+}
+
+/* Next-Button */
+.next-btn {
+  position: fixed;
+  top: 62%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  padding: 0.5rem 0.5rem;
+  font-size: 1.6rem;
+  background-color: #00ff00;
+  color: black;
+  font-family: 'Press Start 2P', cursive;
+  text-decoration: none;
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 0 0 10px lime;
+  transition: all 0.3s ease;
+  z-index: 9999;
+  display: none;
+}
+
+.next-btn:hover {
+  background-color: #00cc00;
+  box-shadow: 0 0 15px lime;
+}

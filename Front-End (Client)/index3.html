@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Reaktor Abschaltung</title>
+  <link rel="stylesheet" href="style3.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <audio id="startAudio" src="sounds/Audio2.mp3"></audio>
+  <h1>Abschaltvorgang</h1>
+
+  <div class="instruction">
+    Alle Reaktorstäbe müssen der Reihenfolge nach abgeschaltet werden. <br>
+    Die Regler müssen in einem Zeitfenster von 4–5 Sekunden auf 0% gebracht werden. <br>
+    Wird das Zeitfenster verpasst, wird der Vorgang neu gestartet.
+  </div>
+
+  <div class="status" id="status"></div>
+  <div class="timer" id="timer">0.00 s</div>
+
+  <div id="sliders">
+    <div class="slider-container">
+      <div class="slider-wrapper">
+        <input type="range" min="0" max="100" value="0" class="slider">
+        <img src="images/Knopf.png" class="knopf" alt="Knopf">
+      </div>
+    </div>
+    <div class="slider-container">
+      <div class="slider-wrapper">
+        <input type="range" min="0" max="100" value="0" class="slider">
+        <img src="images/Knopf.png" class="knopf" alt="Knopf">
+      </div>
+    </div>
+    <div class="slider-container">
+      <div class="slider-wrapper">
+        <input type="range" min="0" max="100" value="0" class="slider">
+        <img src="images/Knopf.png" class="knopf" alt="Knopf">
+      </div>
+    </div>
+    <div class="slider-container">
+      <div class="slider-wrapper">
+        <input type="range" min="0" max="100" value="0" class="slider">
+        <img src="images/Knopf.png" class="knopf" alt="Knopf">
+      </div>
+    </div>
+    <div class="slider-container">
+      <div class="slider-wrapper">
+        <input type="range" min="0" max="100" value="0" class="slider">
+        <img src="images/Knopf.png" class="knopf" alt="Knopf">
+      </div>
+    </div>
+  </div>
+
+  <div class="lamp" id="lamp"></div>
+  <button id="nextPageBtn" class="next-btn" style="display: none;" onclick="window.location.href='index4.html'">
+    Weiter
+  </button>
+  <div id="globalTimer" style="position: fixed; top: 10px; right: 10px; font-size: 1.5em; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 5px; z-index: 1000;">
+  </div>
+  <script>
+    document.addEventListener('click', () => {
+      const audio = document.getElementById('startAudio');
+      audio.play().catch(err => console.warn("Play-Fehler:", err));
+    }, { once: true });
+  </script>
+  <script src="script_Timer.js"></script>
+  <script src="script3.js"></script>
+</body>
+</html>

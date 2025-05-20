@@ -1,0 +1,147 @@
+body, html {
+    margin: 0;                /* Kein Außenabstand */
+    padding: 0;               /* Kein Innenabstand */
+    height: 100%;             /* Ganze Fensterhöhe */
+    font-family: 'Orbitron', sans-serif;  /* Schriftart */
+    color: white;             /* Standardtextfarbe */
+    display: flex;            /* Flexbox für Zentrierung */
+    justify-content: center; /* Horizontal zentrieren */
+    align-items: center;     /* Vertikal zentrieren */
+    overflow: hidden;        /* Scrollen verhindern */
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/Szenario.png'); /* Dein Bild */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.8);
+    z-index: -1;
+}
+
+.container {
+    text-align: center;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.red-instruction {
+    font-size: 50px; 
+    color: red;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    animation: warningBlink 1s infinite; /* <- Animation hinzufügen! */
+}
+
+.number-inputs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+    
+}
+
+.number-inputs input {
+    width: 50px;
+    height: 60px;
+    font-size: 30px;
+    text-align: center;
+    border-radius: 5px;
+    border: 3px solid rgb(0, 0, 0);
+    background: rgba(242, 242, 242, 0.1);
+    color: rgb(0, 0, 0);
+}
+
+.call-button {
+    background-color: rgb(188, 0, 0);
+    color: white;
+    font-size: 30px;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.call-button:hover {
+    background-color: darkred;
+}
+
+.hidden {
+    display: none;
+}
+
+#instruction {
+    margin-top: 20px;
+    font-size: 22px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#error-message.hidden {
+    background: rgba(255, 0, 0, 0.15); /* leicht roter Hintergrund */
+    color: #ff3333;                   /* kräftiges Rot für den Text */
+    font-size: 22px;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+    display: none; /* Start: unsichtbar */
+}
+#error-message{
+    background: rgba(0, 0, 0, 0.15); /* leicht roter Hintergrund */
+    color: #ffffff;                   /* kräftiges Rot für den Text */
+    font-size: 22px;
+    font-weight: bold;
+    padding: 12px 20px;
+    
+    margin-top: 20px;
+    text-align: center;
+}
+
+@keyframes warningBlink {
+    0%, 100% {
+        color: red;
+        text-shadow: 0 0 10px red, 0 0 20px red;
+    }
+    50% {
+        color: rgb(106, 18, 4);
+        text-shadow: 0 0 20px white, 0 0 30px red;
+    }
+}
+
+.next-btn {
+    position: fixed;
+    top: 85%;
+    left: 50.5%;
+    transform: translate(-50%, -50%);
+    padding: 0.5rem 0.5rem;
+    font-size: 1.6rem;
+    background-color: #00ff00;
+    color: black;
+    font-family: 'Press Start 2P', cursive;
+    text-decoration: none;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0 0 10px lime;
+    transition: all 0.3s ease;
+    z-index: 9999;
+    display: none;
+  }
+  
+  .next-btn:hover {
+    background-color: #00cc00;
+    box-shadow: 0 0 15px lime;
+  }

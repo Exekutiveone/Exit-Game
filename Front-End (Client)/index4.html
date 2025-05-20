@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="styles4.css">
+   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body class="login-page">
+  <audio id="startAudio" src="sounds/Audio3.mp3"></audio>
+  <div class="overlay">
+    <div class="login-box">
+      <h1 class="description">Zugangsdaten eingeben:</h1>
+      <input type="text" id="username" placeholder="Benutzername">
+      <input type="password" id="password" placeholder="Passwort">
+      <button onclick="handleLogin()">Einloggen</button>
+    </div>
+  </div>
+  <div id="globalTimer" style="position: fixed; top: 10px; right: 10px; font-size: 1.5em; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 5px; z-index: 1000;">
+  </div>
+  <script>
+    document.addEventListener('click', () => {
+      const audio = document.getElementById('startAudio');
+      audio.play().catch(err => console.warn("Play-Fehler:", err));
+    }, { once: true });
+  </script>
+  <script src="script_Timer.js"></script>
+  <script src="script4.js"></script>
+</body>
+</html>

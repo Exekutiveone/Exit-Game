@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notfall Hotline</title>
+    <link rel="stylesheet" href="style1.css">
+     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="background"></div>
+
+    <div class="container">
+
+        <p class="red-instruction">RUFT DIE NOTFALL- HOTLINE SOFORT AN:</p>
+
+        <div class="number-inputs">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+            <input type="text" maxlength="1">
+        </div>
+
+        <button class="call-button">Anrufen</button>
+
+        <div id="error-message" class="hidden">
+            ❌ Falsche Nummer! Versucht es nochmal.
+        </div>
+
+        <div id="instruction" class="hidden">
+            📞 Verbindung hergestellt! 
+        </div>
+
+        <audio id="callSound" src="sounds/Audio1.mp3"></audio>
+        <button id="nextPageBtn" class="next-btn" style="display: none;" onclick="window.location.href='index2.html'">
+            Weiter
+        </button>
+
+          <div id="globalTimer" style="position: fixed; top: 10px; right: 10px; font-size: 1.5em; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 5px; z-index: 1000;">
+          </div>
+          <script src="script_Timer.js"></script> <!-- Timer zuerst -->
+        <script src="script1.js"></script>       <!-- dein Spielscript danach -->
+</body>
+</html>

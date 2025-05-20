@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ExitGame</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('images/ai-generated-8993254_1920.png');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.6);
+      z-index: -1;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: transparent;
+      position: relative;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 600px;
+      padding: 20px;
+    }
+
+    .intro-title {
+      font-size: 64px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      color: #ff0000;
+      text-shadow: 0 0 10px #00ffcc, 0 0 20px #ff4406;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      animation: pulseGlow 2s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        text-shadow: 0 0 10px hsl(195, 2%, 52%), 0 0 20px hsl(0, 88%, 50%), 0 0 20px;
+      }
+      50% {
+        text-shadow: 0 0 20px hsl(195, 2%, 52%), 0 0 20px, 0 0 30px hsl(0, 88%, 50%), 0 0 20px;
+      }
+    }
+
+    button {
+      padding: 25px 80px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background-color: #00cc66;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #00aa55;
+    }
+
+    #timer {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-size: 1.5em;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      z-index: 1000;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .fade {
+      transition: all 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background-image"></div>
+
+  <div class="container fade" id="content">
+    <div id="game">
+      <h1 class="intro-title">Willkommen im Exit Game</h1>
+      <button onclick="startGame()">Start</button>
+    </div>
+  </div>
+
+  <div id="timer"></div>
+
+  <audio id="alarmAudio" src="sounds/Alarm.mp3" preload="auto"></audio>
+
+
+  <script src="script_Timer.js"></script>
+
+  <script>
+    function sende(ip, path) {
+      fetch(`http://${ip}${path}`)
+        .then(res => res.text())
+        .then(text => console.log(`[${ip}${path}] OK`, text))
+        .catch(err => console.error(`[${ip}${path}] FEHLER`, err));
+    }
+
+    const steps = [
+      `
+      <h2>Szenario</h2>
+      <p>Ihr seid Besucher in einem Atomkraftwerk in Südfrankreich. Plötzlich kommt es zu einer Kernschmelze. 
+      Der Guide ist verschwunden – ihr müsst den Reaktor herunterfahren, Stäbe entfernen und die Kühlung aktivieren!</p>
+      <button onclick="resetTimerAndStart()">Los geht’s</button>
+      `
+    ];
+
+    function resetTimerAndStart() {
+      const durationInSeconds = 1200;
+      const endTime = Date.now() + durationInSeconds * 1000;
+      localStorage.setItem('countdownEnd', endTime);
+      localStorage.removeItem('warnedTimes');
+
+      const timerElement = document.getElementById('globalTimer');
+      if (timerElement) {
+        timerElement.textContent = `⏱️ 20:00`;
+      }
+
+      window.location.href = 'index1.html';
+    }
+
+    function startGame() {
+      const game = document.getElementById("game");
+      const timer = document.getElementById("timer");
+
+      game.innerHTML = steps[0];
+      timer.classList.remove('hidden');
+
+      // START-KLICK → Initialzustand sofort setzen
+      sende('192.168.4.1', '/fanaus');        // Ventilator AUS
+      sende('192.168.4.1', '/diffuseraus');   // Diffuser AUS
+      sende('192.168.4.2', '/red-off');       // Rot AUS
+      sende('192.168.4.2', '/green-on');      // Grün AN
+      sende('192.168.4.2', '/blue-on');       // Blau AN
+
+      // 20 Sekunden später → MP3, LEDs, Diffuser aktivieren
+      setTimeout(() => {
+        const audio = document.getElementById("alarmAudio");
+        audio.play();
+
+
+        sende('192.168.4.2', '/red-on');       // Rot AN
+        sende('192.168.4.2', '/green-off');    // Grün AUS
+        sende('192.168.4.1', '/diffuseran');   // Diffuser AN
+      }, 20000);
+    }
+
+    // Direkt beim Laden: Basiszustand setzen
+    window.addEventListener("DOMContentLoaded", () => {
+      sende('192.168.4.1', '/fanaus');
+      sende('192.168.4.1', '/diffuseraus');
+      sende('192.168.4.2', '/red-off');
+      sende('192.168.4.2', '/green-on');
+      sende('192.168.4.2', '/blue-on');
+    });
+  </script>
+</body>
+</html>

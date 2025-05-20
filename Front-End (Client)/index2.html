@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ID Eingabe</title>
+  <link rel="stylesheet" href="style2.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="background"></div>
+
+
+  <div class="input-section">
+    <h2>ID eingeben:</h2>
+    <div class="number-inputs">
+      <input type="text" maxlength="1">
+      <input type="text" maxlength="1">
+      <input type="text" maxlength="1">
+      <input type="text" maxlength="1">
+      <input type="text" maxlength="1">
+    </div>
+    <button id="check-btn" class="submit-button">Bestätigen</button>
+
+    <div id="instruction" class="hidden">
+      ✅ Richtige ID! Zugriff gewährt.
+    </div>
+  </div>
+
+  <button id="nextPageBtn" class="next-btn" style="display: none;" onclick="window.location.href='index3.html'">
+    Weiter
+  </button>
+
+  <div id="globalTimer" style="position: fixed; top: 10px; right: 10px; font-size: 1.5em; background: rgba(0,0,0,0.7); color: white; padding: 5px 10px; border-radius: 5px; z-index: 1000;">
+  </div>
+  <script>
+    document.addEventListener('click', () => {
+      const audio = document.getElementById('startAudio');
+      audio.play().catch(err => console.warn("Play-Fehler:", err));
+    }, { once: true });
+  </script>
+  <script src="script_Timer.js"></script>
+  <script src="script2.js"></script>
+</body>
+</html>
